@@ -1,0 +1,28 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import { processSteps } from '@/data/company';
+---
+
+<section class="py-16 sm:py-20">
+  <Container>
+    <SectionIntro
+      eyebrow="Proceso de trabajo"
+      title="Del diagnóstico a la evolución continua."
+      description="Estructuramos el proyecto para reducir incertidumbre, mantener trazabilidad y asegurar que cada etapa tenga un propósito claro."
+      align="center"
+    />
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-4">
+      {
+        processSteps.map((step, index) => (
+          <article class="surface-card p-7">
+            <span class="text-sm font-semibold tracking-[0.2em] text-brand-600">0{index + 1}</span>
+            <h3 class="mt-4 text-xl font-bold">{step.title}</h3>
+            <p class="mt-4 leading-7 text-slate-600">{step.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>

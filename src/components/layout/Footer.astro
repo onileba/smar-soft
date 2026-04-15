@@ -1,0 +1,70 @@
+---
+import Container from '@/components/ui/Container.astro';
+import { footerNavigation, siteConfig, socialLinks } from '@/data/site';
+---
+
+<footer class="mt-24 border-t border-slate-200 bg-ink-950 text-slate-200">
+  <Container class="grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div class="max-w-md">
+      <div class="flex items-center gap-3">
+        <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500 font-bold text-ink-950">
+          SS
+        </span>
+        <div>
+          <p class="text-lg font-bold tracking-[0.08em]">{siteConfig.name}</p>
+          <p class="text-sm text-slate-400">{siteConfig.domain}</p>
+        </div>
+      </div>
+      <p class="mt-5 text-sm leading-7 text-slate-400">
+        Consultoría tecnológica y fábrica de software para organizaciones que necesitan soluciones
+        mantenibles, ágiles y alineadas al negocio.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Enlaces</h2>
+      <ul class="mt-5 space-y-3 text-sm">
+        {
+          footerNavigation.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 transition hover:text-brand-300">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Contacto</h2>
+      <ul class="mt-5 space-y-3 text-sm text-slate-400">
+        <li>
+          <a href={`mailto:${siteConfig.email}`} class="transition hover:text-brand-300">
+            {siteConfig.email}
+          </a>
+        </li>
+        <li>{siteConfig.phone}</li>
+        <li>{siteConfig.location}</li>
+      </ul>
+      <div class="mt-6">
+        <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Redes</h3>
+        <ul class="mt-4 space-y-3 text-sm text-slate-400">
+          {
+            socialLinks.map((item) => (
+              <li>
+                <a href={item.href} class="transition hover:text-brand-300">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Container>
+
+  <Container class="border-t border-white/10 py-5 text-sm text-slate-500">
+    <p>© {new Date().getFullYear()} {siteConfig.legalName}. Todos los derechos reservados.</p>
+  </Container>
+</footer>

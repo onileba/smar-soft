@@ -1,0 +1,54 @@
+---
+import MainLayout from '@/components/layout/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+---
+
+<MainLayout
+  title="Consultoría"
+  description="Consultoría tecnológica de SmarSoFT en diagnóstico, arquitectura, integración, BI y optimización de procesos."
+  pathname="/consultoria"
+>
+  <section class="py-20 sm:py-24">
+    <Container>
+      <SectionIntro
+        eyebrow="Consultoría"
+        title="Diagnóstico y dirección técnica para proyectos con impacto operativo."
+        description="Apoyamos decisiones tecnológicas con análisis claro, visión de arquitectura y foco en viabilidad de implementación."
+      />
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+        <article class="surface-card p-8">
+          <h2 class="text-xl font-bold">Diagnóstico</h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            Evaluación de contexto actual, restricciones, riesgos y oportunidades prioritarias.
+          </p>
+        </article>
+        <article class="surface-card p-8">
+          <h2 class="text-xl font-bold">Arquitectura</h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            Definición de lineamientos técnicos, componentes y criterios de escalabilidad.
+          </p>
+        </article>
+        <article class="surface-card p-8">
+          <h2 class="text-xl font-bold">Integración</h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            Diseño de interoperabilidad entre plataformas, datos y procesos clave.
+          </p>
+        </article>
+        <article class="surface-card p-8">
+          <h2 class="text-xl font-bold">BI y reporting</h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            Definición de indicadores, consolidación de información y visualización útil.
+          </p>
+        </article>
+        <article class="surface-card p-8">
+          <h2 class="text-xl font-bold">Optimización</h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            Mejora de procesos y reducción de fricción operativa mediante automatización y rediseño.
+          </p>
+        </article>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

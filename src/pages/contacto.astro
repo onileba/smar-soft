@@ -1,0 +1,28 @@
+---
+import MainLayout from '@/components/layout/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import ContactForm from '@/components/contact/ContactForm.astro';
+import ContactInfoCard from '@/components/contact/ContactInfoCard.astro';
+---
+
+<MainLayout
+  title="Contacto"
+  description="Póngase en contacto con SmarSoFT para conversar sobre desarrollo a medida, consultoría tecnológica o integración de sistemas."
+  pathname="/contacto"
+>
+  <section class="py-20 sm:py-24">
+    <Container>
+      <SectionIntro
+        eyebrow="Contacto"
+        title="Conversemos sobre su necesidad tecnológica."
+        description="Comparta su contexto y nos pondremos en contacto para una primera conversación orientada a alcance, prioridades y posibles siguientes pasos."
+      />
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+        <ContactForm />
+        <ContactInfoCard />
+      </div>
+    </Container>
+  </section>
+</MainLayout>

@@ -1,0 +1,32 @@
+---
+import { contactPlaceholders, siteConfig } from '@/data/site';
+---
+
+<aside class="surface-card p-8">
+  <span class="eyebrow">Contacto</span>
+  <h2 class="mt-4 text-2xl font-bold">Canales iniciales</h2>
+  <p class="mt-4 leading-7 text-slate-600">
+    Podemos iniciar con una conversación breve para entender alcance, prioridades y tiempos.
+  </p>
+
+  <dl class="mt-8 space-y-5">
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Correo</dt>
+      <dd class="mt-2 text-slate-800">
+        <a href={`mailto:${siteConfig.email}`} class="transition hover:text-brand-700">{siteConfig.email}</a>
+      </dd>
+    </div>
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Teléfono</dt>
+      <dd class="mt-2 text-slate-800">{siteConfig.phone}</dd>
+    </div>
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Cobertura</dt>
+      <dd class="mt-2 text-slate-800">{siteConfig.location}</dd>
+    </div>
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Domicilio</dt>
+      <dd class="mt-2 text-slate-800">{contactPlaceholders.address}</dd>
+    </div>
+  </dl>
+</aside>

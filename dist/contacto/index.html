@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto | SmarSoFT</title>
+<meta name="description" content="Póngase en contacto con SmarSoFT para conversar sobre desarrollo a medida, consultoría tecnológica o integración de sistemas.">
+<meta name="keywords" content="consultoría tecnológica, fábrica de software, desarrollo a medida, integración de sistemas, arquitectura de software, modernización tecnológica">
+<meta name="theme-color" content="#0b1220">
+<link rel="canonical" href="https://smar-soft.com/contacto">
+<link rel="alternate" href="https://www.smar-soft.com/contacto">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contacto | SmarSoFT">
+<meta property="og:description" content="Póngase en contacto con SmarSoFT para conversar sobre desarrollo a medida, consultoría tecnológica o integración de sistemas.">
+<meta property="og:url" content="https://smar-soft.com/contacto">
+<meta property="og:site_name" content="SmarSoFT">
+<meta property="og:image" content="https://smar-soft.com/og-default.svg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contacto | SmarSoFT">
+<meta name="twitter:description" content="Póngase en contacto con SmarSoFT para conversar sobre desarrollo a medida, consultoría tecnológica o integración de sistemas.">
+<meta name="twitter:image" content="https://smar-soft.com/og-default.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/_astro/aviso-de-privacidad.fb287ff1.css" /><script type="module">const n=document.querySelector("#contact-form"),s=document.querySelector("#contact-feedback"),o=n?.querySelector('button[type="submit"]'),r=(t,e="neutral")=>{s instanceof HTMLElement&&(s.textContent=t,s.className="min-h-6 text-sm font-medium "+(e==="success"?"text-emerald-700":e==="error"?"text-red-700":"text-slate-600"))},a=t=>{o instanceof HTMLButtonElement&&(o.disabled=t,o.textContent=t?"Enviando...":"Enviar solicitud",o.setAttribute("aria-busy",t?"true":"false"))};n?.addEventListener("submit",async t=>{if(t.preventDefault(),!(n instanceof HTMLFormElement))return;const e=Object.fromEntries(new FormData(n).entries());if(!e.nombre||!e.correo||!e.servicio||!e.mensaje){r("Complete los campos obligatorios antes de enviar.","error");return}a(!0),r("Enviando solicitud...");try{const c=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)}),i=await c.json();if(!c.ok){r(i.message||"No fue posible procesar la solicitud.","error"),a(!1);return}n.reset(),r(i.message||"Solicitud enviada correctamente.","success")}catch{r("Ocurrió un error de red. Intente nuevamente.","error")}finally{a(!1)}});
+</script></head>
+  <body class="selection:bg-brand-200 selection:text-ink-950">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2">
+      Saltar al contenido
+    </a>
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/88 backdrop-blur-lg">
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex min-h-18 items-center justify-between gap-6 py-4">
+  
+    <a href="/" class="flex items-center gap-3 text-slate-950" aria-label="Inicio SmarSoFT">
+      <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-ink-950 text-sm font-bold text-brand-300">
+        SS
+      </span>
+      <span class="text-lg font-bold tracking-[0.08em]">SmarSoFT</span>
+    </a>
+
+    <nav aria-label="Principal" class="hidden items-center gap-6 lg:flex">
+      <a href="/" class="text-sm font-medium transition hover:text-brand-700 text-slate-700">
+            Inicio
+          </a><a href="/nosotros" class="text-sm font-medium transition hover:text-brand-700 text-slate-700">
+            Nosotros
+          </a><a href="/servicios" class="text-sm font-medium transition hover:text-brand-700 text-slate-700">
+            Servicios
+          </a><a href="/fabrica-de-software" class="text-sm font-medium transition hover:text-brand-700 text-slate-700">
+            Fábrica de software
+          </a><a href="/consultoria" class="text-sm font-medium transition hover:text-brand-700 text-slate-700">
+            Consultoría
+          </a><a href="/tecnologias" class="text-sm font-medium transition hover:text-brand-700 text-slate-700">
+            Tecnologías
+          </a><a href="/contacto" aria-current="page" class="text-sm font-medium transition hover:text-brand-700 text-brand-700">
+            Contacto
+          </a>
+    </nav>
+
+    <div class="hidden lg:block">
+      <a href="/contacto" class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60 bg-brand-500 text-white shadow-[0_18px_40px_-22px_rgba(30,168,155,0.7)] hover:bg-brand-600">
+      Solicitar contacto
+    </a>
+    </div>
+  
+</div>
+
+  <div class="border-t border-slate-200/70 bg-white/90 lg:hidden">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 overflow-x-auto py-3">
+  
+      <nav aria-label="Principal móvil" class="flex min-w-max items-center gap-4">
+        <a href="/" class="rounded-full px-3 py-2 text-sm font-medium transition text-slate-700 hover:bg-slate-100">
+              Inicio
+            </a><a href="/nosotros" class="rounded-full px-3 py-2 text-sm font-medium transition text-slate-700 hover:bg-slate-100">
+              Nosotros
+            </a><a href="/servicios" class="rounded-full px-3 py-2 text-sm font-medium transition text-slate-700 hover:bg-slate-100">
+              Servicios
+            </a><a href="/fabrica-de-software" class="rounded-full px-3 py-2 text-sm font-medium transition text-slate-700 hover:bg-slate-100">
+              Fábrica de software
+            </a><a href="/consultoria" class="rounded-full px-3 py-2 text-sm font-medium transition text-slate-700 hover:bg-slate-100">
+              Consultoría
+            </a><a href="/tecnologias" class="rounded-full px-3 py-2 text-sm font-medium transition text-slate-700 hover:bg-slate-100">
+              Tecnologías
+            </a><a href="/contacto" aria-current="page" class="rounded-full px-3 py-2 text-sm font-medium transition bg-brand-50 text-brand-700">
+              Contacto
+            </a>
+      </nav>
+    
+</div>
+  </div>
+</header>
+    <main id="contenido">
+      
+  <section class="py-20 sm:py-24">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+  
+      <div class="max-w-3xl">
+  <span class="eyebrow">Contacto</span>
+  <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Conversemos sobre su necesidad tecnológica.</h2>
+  <p class="mt-4 text-lg leading-8 text-slate-600">Comparta su contexto y nos pondremos en contacto para una primera conversación orientada a alcance, prioridades y posibles siguientes pasos.</p>
+</div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+        <div class="surface-card p-8">
+  <form id="contact-form" class="grid gap-5" novalidate>
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="nombre">
+        <span>Nombre <span aria-hidden="true">*</span></span>
+        <input id="nombre" name="nombre" type="text" required aria-required="true" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400" autocomplete="name">
+      </label>
+
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="empresa">
+        Empresa
+        <input id="empresa" name="empresa" type="text" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400" autocomplete="organization">
+      </label>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="correo">
+        <span>Correo <span aria-hidden="true">*</span></span>
+        <input id="correo" name="correo" type="email" required aria-required="true" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400" autocomplete="email">
+      </label>
+
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="telefono">
+        Teléfono
+        <input id="telefono" name="telefono" type="tel" inputmode="tel" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400" autocomplete="tel">
+      </label>
+    </div>
+
+    <label class="grid gap-2 text-sm font-medium text-slate-700" for="servicio">
+      <span>Servicio <span aria-hidden="true">*</span></span>
+      <select id="servicio" name="servicio" required aria-required="true" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition hover:border-slate-400">
+        <option value="">Seleccione una opción</option>
+        <option value="Desarrollo a medida">Desarrollo a medida</option><option value="Fábrica de software">Fábrica de software</option><option value="Consultoría tecnológica">Consultoría tecnológica</option><option value="Integración de sistemas">Integración de sistemas</option><option value="BI / Reporting">BI / Reporting</option><option value="Otro">Otro</option>
+      </select>
+    </label>
+
+    <label class="grid gap-2 text-sm font-medium text-slate-700" for="mensaje">
+      <span>Mensaje <span aria-hidden="true">*</span></span>
+      <textarea id="mensaje" name="mensaje" required aria-required="true" rows="6" class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400" placeholder="Cuéntenos brevemente el contexto, necesidad o proyecto."></textarea>
+    </label>
+
+    <input type="hidden" name="turnstileToken" value="">
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p id="contact-note" class="text-sm leading-6 text-slate-500">
+        Al enviar este formulario, acepta el tratamiento básico de sus datos conforme al aviso de
+        privacidad.
+      </p>
+      <button type="submit" aria-label="Enviar solicitud de contacto" aria-disabled="false" class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60 bg-brand-500 text-white shadow-[0_18px_40px_-22px_rgba(30,168,155,0.7)] hover:bg-brand-600">
+      Enviar solicitud
+    </button>
+    </div>
+
+    <p id="contact-feedback" class="min-h-6 text-sm font-medium" aria-live="polite" role="status"></p>
+  </form>
+</div>
+        <aside class="surface-card p-8">
+  <span class="eyebrow">Contacto</span>
+  <h2 class="mt-4 text-2xl font-bold">Canales iniciales</h2>
+  <p class="mt-4 leading-7 text-slate-600">
+    Podemos iniciar con una conversación breve para entender alcance, prioridades y tiempos.
+  </p>
+
+  <dl class="mt-8 space-y-5">
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Correo</dt>
+      <dd class="mt-2 text-slate-800">
+        <a href="mailto:contacto@smar-soft.com" class="transition hover:text-brand-700">contacto@smar-soft.com</a>
+      </dd>
+    </div>
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Teléfono</dt>
+      <dd class="mt-2 text-slate-800">+52 (000) 000 0000</dd>
+    </div>
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Cobertura</dt>
+      <dd class="mt-2 text-slate-800">México | Atención remota y presencial según proyecto</dd>
+    </div>
+    <div>
+      <dt class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Domicilio</dt>
+      <dd class="mt-2 text-slate-800">[Pendiente definir domicilio fiscal y/o comercial]</dd>
+    </div>
+  </dl>
+</aside>
+      </div>
+    
+</div>
+  </section>
+
+    </main>
+    <footer class="mt-24 border-t border-slate-200 bg-ink-950 text-slate-200">
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+  
+    <div class="max-w-md">
+      <div class="flex items-center gap-3">
+        <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500 font-bold text-ink-950">
+          SS
+        </span>
+        <div>
+          <p class="text-lg font-bold tracking-[0.08em]">SmarSoFT</p>
+          <p class="text-sm text-slate-400">smar-soft.com</p>
+        </div>
+      </div>
+      <p class="mt-5 text-sm leading-7 text-slate-400">
+        Consultoría tecnológica y fábrica de software para organizaciones que necesitan soluciones
+        mantenibles, ágiles y alineadas al negocio.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Enlaces</h2>
+      <ul class="mt-5 space-y-3 text-sm">
+        <li>
+              <a href="/" class="text-slate-400 transition hover:text-brand-300">
+                Inicio
+              </a>
+            </li><li>
+              <a href="/nosotros" class="text-slate-400 transition hover:text-brand-300">
+                Nosotros
+              </a>
+            </li><li>
+              <a href="/servicios" class="text-slate-400 transition hover:text-brand-300">
+                Servicios
+              </a>
+            </li><li>
+              <a href="/fabrica-de-software" class="text-slate-400 transition hover:text-brand-300">
+                Fábrica de software
+              </a>
+            </li><li>
+              <a href="/consultoria" class="text-slate-400 transition hover:text-brand-300">
+                Consultoría
+              </a>
+            </li><li>
+              <a href="/tecnologias" class="text-slate-400 transition hover:text-brand-300">
+                Tecnologías
+              </a>
+            </li><li>
+              <a href="/contacto" class="text-slate-400 transition hover:text-brand-300">
+                Contacto
+              </a>
+            </li><li>
+              <a href="/aviso-de-privacidad" class="text-slate-400 transition hover:text-brand-300">
+                Aviso de privacidad
+              </a>
+            </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Contacto</h2>
+      <ul class="mt-5 space-y-3 text-sm text-slate-400">
+        <li>
+          <a href="mailto:contacto@smar-soft.com" class="transition hover:text-brand-300">
+            contacto@smar-soft.com
+          </a>
+        </li>
+        <li>+52 (000) 000 0000</li>
+        <li>México | Atención remota y presencial según proyecto</li>
+      </ul>
+      <div class="mt-6">
+        <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-white">Redes</h3>
+        <ul class="mt-4 space-y-3 text-sm text-slate-400">
+          <li>
+                <a href="[Pendiente definir URL LinkedIn]" class="transition hover:text-brand-300">
+                  LinkedIn
+                </a>
+              </li><li>
+                <a href="[Pendiente definir URL X]" class="transition hover:text-brand-300">
+                  X
+                </a>
+              </li><li>
+                <a href="[Pendiente definir URL Facebook]" class="transition hover:text-brand-300">
+                  Facebook
+                </a>
+              </li>
+        </ul>
+      </div>
+    </div>
+  
+</div>
+
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 border-t border-white/10 py-5 text-sm text-slate-500">
+  
+    <p>© 2026 SmarSoFT. Todos los derechos reservados.</p>
+  
+</div>
+</footer>
+  </body></html>

@@ -1,0 +1,177 @@
+---
+import Button from '@/components/ui/Button.astro';
+
+const serviceOptions = [
+  'Desarrollo a medida',
+  'Fábrica de software',
+  'Consultoría tecnológica',
+  'Integración de sistemas',
+  'BI / Reporting',
+  'Otro',
+];
+---
+
+<div class="surface-card p-8">
+  <form id="contact-form" class="grid gap-5" novalidate>
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="nombre">
+        <span>Nombre <span aria-hidden="true">*</span></span>
+        <input
+          id="nombre"
+          name="nombre"
+          type="text"
+          required
+          aria-required="true"
+          class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400"
+          autocomplete="name"
+        />
+      </label>
+
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="empresa">
+        Empresa
+        <input
+          id="empresa"
+          name="empresa"
+          type="text"
+          class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400"
+          autocomplete="organization"
+        />
+      </label>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="correo">
+        <span>Correo <span aria-hidden="true">*</span></span>
+        <input
+          id="correo"
+          name="correo"
+          type="email"
+          required
+          aria-required="true"
+          class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400"
+          autocomplete="email"
+        />
+      </label>
+
+      <label class="grid gap-2 text-sm font-medium text-slate-700" for="telefono">
+        Teléfono
+        <input
+          id="telefono"
+          name="telefono"
+          type="tel"
+          inputmode="tel"
+          class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400"
+          autocomplete="tel"
+        />
+      </label>
+    </div>
+
+    <label class="grid gap-2 text-sm font-medium text-slate-700" for="servicio">
+      <span>Servicio <span aria-hidden="true">*</span></span>
+      <select
+        id="servicio"
+        name="servicio"
+        required
+        aria-required="true"
+        class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition hover:border-slate-400"
+      >
+        <option value="">Seleccione una opción</option>
+        {serviceOptions.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </label>
+
+    <label class="grid gap-2 text-sm font-medium text-slate-700" for="mensaje">
+      <span>Mensaje <span aria-hidden="true">*</span></span>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        required
+        aria-required="true"
+        rows="6"
+        class="rounded-2xl border border-slate-300 bg-white px-4 py-3 transition placeholder:text-slate-400 hover:border-slate-400"
+        placeholder="Cuéntenos brevemente el contexto, necesidad o proyecto."
+      ></textarea>
+    </label>
+
+    <input type="hidden" name="turnstileToken" value="" />
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p id="contact-note" class="text-sm leading-6 text-slate-500">
+        Al enviar este formulario, acepta el tratamiento básico de sus datos conforme al aviso de
+        privacidad.
+      </p>
+      <Button type="submit" ariaLabel="Enviar solicitud de contacto">Enviar solicitud</Button>
+    </div>
+
+    <p id="contact-feedback" class="min-h-6 text-sm font-medium" aria-live="polite" role="status"></p>
+  </form>
+</div>
+
+<script>
+  const form = document.querySelector('#contact-form');
+  const feedback = document.querySelector('#contact-feedback');
+  const submitButton = form?.querySelector('button[type="submit"]');
+
+  const setFeedback = (
+    message: string,
+    tone: 'neutral' | 'success' | 'error' = 'neutral',
+  ) => {
+    if (!(feedback instanceof HTMLElement)) return;
+    feedback.textContent = message;
+    feedback.className =
+      'min-h-6 text-sm font-medium ' +
+      (tone === 'success'
+        ? 'text-emerald-700'
+        : tone === 'error'
+          ? 'text-red-700'
+          : 'text-slate-600');
+  };
+
+  const setSubmitting = (isSubmitting: boolean) => {
+    if (!(submitButton instanceof HTMLButtonElement)) return;
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? 'Enviando...' : 'Enviar solicitud';
+    submitButton.setAttribute('aria-busy', isSubmitting ? 'true' : 'false');
+  };
+
+  form?.addEventListener('submit', async (event: Event) => {
+    event.preventDefault();
+
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    if (!data.nombre || !data.correo || !data.servicio || !data.mensaje) {
+      setFeedback('Complete los campos obligatorios antes de enviar.', 'error');
+      return;
+    }
+
+    setSubmitting(true);
+    setFeedback('Enviando solicitud...');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setFeedback(result.message || 'No fue posible procesar la solicitud.', 'error');
+        setSubmitting(false);
+        return;
+      }
+
+      form.reset();
+      setFeedback(result.message || 'Solicitud enviada correctamente.', 'success');
+    } catch {
+      setFeedback('Ocurrió un error de red. Intente nuevamente.', 'error');
+    } finally {
+      setSubmitting(false);
+    }
+  });
+</script>

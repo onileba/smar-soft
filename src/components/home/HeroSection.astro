@@ -1,0 +1,59 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="relative overflow-hidden py-20 sm:py-24">
+  <Container class="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+    <div class="max-w-3xl">
+      <span class="eyebrow">Consultoría tecnológica y fábrica de software</span>
+      <h1 class="mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+        Diagnóstico, arquitectura y desarrollo para construir soluciones que sí resuelvan operación.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+        En SmarSoFT acompañamos a empresas que necesitan claridad técnica, ejecución confiable y
+        software a medida para integrar procesos, modernizar plataformas y sostener crecimiento con
+        mejor control.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm text-slate-500">
+        <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Arquitectura y diagnóstico</span>
+        <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Desarrollo a medida</span>
+        <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Integración y modernización</span>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href="/contacto">Hablemos de su proyecto</Button>
+        <Button href="/servicios" variant="secondary">Ver servicios</Button>
+      </div>
+    </div>
+
+    <div class="surface-card relative overflow-hidden p-8 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_right,rgba(79,209,197,0.16),transparent_38%)] before:content-['']">
+      <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-400 via-cyan-400 to-slate-200"></div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-5 backdrop-blur-sm">
+          <p class="text-sm font-semibold text-brand-700">Desarrollo a medida</p>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Sistemas, portales y APIs alineados a reglas de negocio, flujos internos y objetivos de operación.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-5 backdrop-blur-sm">
+          <p class="text-sm font-semibold text-brand-700">Consultoría técnica</p>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Diagnóstico, arquitectura, integración y hoja de ruta para iniciativas con criterios claros de prioridad.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-5 backdrop-blur-sm">
+          <p class="text-sm font-semibold text-brand-700">Modernización</p>
+          <p class="mt-3 text-sm leading-6 text-slate-600">
+            Evolución de plataformas existentes con foco en estabilidad, mantenibilidad y continuidad operativa.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-ink-950 p-5 text-slate-200 shadow-[0_18px_40px_-28px_rgba(11,18,32,0.9)]">
+          <p class="text-sm font-semibold text-brand-300">Entrega responsable</p>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Procesos claros, comunicación continua y soluciones pragmáticas listas para producción y evolución.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

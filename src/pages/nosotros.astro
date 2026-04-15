@@ -1,0 +1,46 @@
+---
+import MainLayout from '@/components/layout/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import { aboutContent } from '@/data/company';
+---
+
+<MainLayout
+  title="Nosotros"
+  description="Conozca el enfoque, misión, visión y valores de SmarSoFT como socio tecnológico para proyectos de software y consultoría."
+  pathname="/nosotros"
+>
+  <section class="py-20 sm:py-24">
+    <Container>
+      <SectionIntro
+        eyebrow="Nosotros"
+        title="Un socio tecnológico orientado a claridad, calidad y ejecución responsable."
+        description="SmarSoFT nace con una premisa simple: la tecnología debe resolver necesidades reales con soluciones mantenibles y procesos de entrega claros."
+      />
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        <article class="surface-card p-8 lg:col-span-2">
+          <h2 class="text-2xl font-bold">Enfoque</h2>
+          <p class="mt-4 leading-8 text-slate-600">{aboutContent.approach}</p>
+          <div class="mt-10 grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 class="text-xl font-bold">Misión</h3>
+              <p class="mt-4 leading-7 text-slate-600">{aboutContent.mission}</p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">Visión</h3>
+              <p class="mt-4 leading-7 text-slate-600">{aboutContent.vision}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="surface-card p-8">
+          <h2 class="text-2xl font-bold">Valores</h2>
+          <ul class="mt-6 list-inside list-disc space-y-4 text-slate-600">
+            {aboutContent.values.map((value) => <li>{value}</li>)}
+          </ul>
+        </article>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

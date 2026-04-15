@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1220" />
+      <stop offset="100%" stop-color="#101a2e" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1030" cy="140" r="220" fill="#17304b" opacity="0.45" />
+  <circle cx="160" cy="520" r="180" fill="#0f766e" opacity="0.2" />
+  <text x="96" y="265" fill="#e5eef7" font-size="78" font-family="Verdana, sans-serif" font-weight="700">
+    SmarSoFT
+  </text>
+  <text x="96" y="335" fill="#8adfd6" font-size="34" font-family="Verdana, sans-serif">
+    Consultoría tecnológica y fábrica de software
+  </text>
+  <text x="96" y="404" fill="#a8bacd" font-size="26" font-family="Verdana, sans-serif">
+    Soluciones digitales a medida para acelerar operación, integración y crecimiento.
+  </text>
+</svg>

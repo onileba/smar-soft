@@ -1,0 +1,43 @@
+---
+import MainLayout from '@/components/layout/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import { serviceBenefits, serviceCatalog } from '@/data/services';
+---
+
+<MainLayout
+  title="Servicios"
+  description="Explore los servicios de SmarSoFT: desarrollo a medida, modernización, integración, consultoría, BI y soporte evolutivo."
+  pathname="/servicios"
+>
+  <section class="py-20 sm:py-24">
+    <Container>
+      <SectionIntro
+        eyebrow="Servicios"
+        title="Servicios especializados para construir y mejorar capacidades digitales."
+        description="Atendemos necesidades puntuales y proyectos integrales con una mezcla equilibrada de análisis, arquitectura, desarrollo y acompañamiento."
+      />
+
+      <div class="section-grid mt-12">
+        {
+          serviceCatalog.map((service) => (
+            <article class="surface-card p-8">
+              <h2 class="text-2xl font-bold">{service.title}</h2>
+              <p class="mt-4 leading-7 text-slate-600">{service.description}</p>
+              <ul class="mt-6 list-inside list-disc space-y-3 text-sm text-slate-500">
+                {service.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="surface-card mt-12 p-8">
+        <h2 class="text-2xl font-bold">Beneficios esperados</h2>
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          {serviceBenefits.map((benefit) => <p class="rounded-2xl bg-slate-50 px-5 py-4 text-slate-700">{benefit}</p>)}
+        </div>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

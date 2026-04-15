@@ -1,0 +1,45 @@
+---
+import { siteConfig } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  pathname?: string;
+  image?: string;
+}
+
+const {
+  title = siteConfig.defaultSeoTitle,
+  description = siteConfig.defaultSeoDescription,
+  pathname = '/',
+  image = siteConfig.socialImage,
+} = Astro.props as Props;
+
+const normalizedPath = pathname === '/' ? '' : pathname;
+const canonical = new URL(normalizedPath || '/', siteConfig.siteUrl).toString();
+const alternateCanonical = new URL(normalizedPath || '/', siteConfig.alternateSiteUrl).toString();
+const pageTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
+const socialImage = new URL(image, siteConfig.siteUrl).toString();
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={siteConfig.keywords} />
+<meta name="theme-color" content="#0b1220" />
+<link rel="canonical" href={canonical} />
+<link rel="alternate" href={alternateCanonical} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:image" content={socialImage} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />

@@ -1,0 +1,29 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="py-16 sm:py-20">
+  <Container>
+    <div class="overflow-hidden rounded-[2rem] bg-ink-950 px-8 py-12 text-white shadow-[0_25px_80px_-40px_rgba(11,18,32,0.8)] sm:px-12">
+      <span class="eyebrow border-white/10 bg-white/10 text-brand-300">Siguiente paso</span>
+      <div class="mt-6 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Si su operación necesita software más claro, útil y confiable, conversemos.
+          </h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+            Podemos apoyar desde un diagnóstico inicial hasta la construcción y evolución de una
+            solución completa.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <Button href="/contacto">Solicitar contacto</Button>
+          <Button href="/consultoria" variant="secondary" class="border-white/20 bg-white/5 text-white hover:border-brand-300 hover:text-brand-300">
+            Ver consultoría
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

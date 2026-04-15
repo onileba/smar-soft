@@ -1,0 +1,66 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import { mainNavigation, siteConfig } from '@/data/site';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props as Props;
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/88 backdrop-blur-lg">
+  <Container class="flex min-h-18 items-center justify-between gap-6 py-4">
+    <a href="/" class="flex items-center gap-3 text-slate-950" aria-label={`Inicio ${siteConfig.name}`}>
+      <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-ink-950 text-sm font-bold text-brand-300">
+        SS
+      </span>
+      <span class="text-lg font-bold tracking-[0.08em]">{siteConfig.name}</span>
+    </a>
+
+    <nav aria-label="Principal" class="hidden items-center gap-6 lg:flex">
+      {
+        mainNavigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={currentPath === item.href ? 'page' : undefined}
+            class:list={[
+              'text-sm font-medium transition hover:text-brand-700',
+              currentPath === item.href ? 'text-brand-700' : 'text-slate-700',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden lg:block">
+      <Button href="/contacto">Solicitar contacto</Button>
+    </div>
+  </Container>
+
+  <div class="border-t border-slate-200/70 bg-white/90 lg:hidden">
+    <Container class="overflow-x-auto py-3">
+      <nav aria-label="Principal móvil" class="flex min-w-max items-center gap-4">
+        {
+          mainNavigation.map((item) => (
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? 'page' : undefined}
+              class:list={[
+                'rounded-full px-3 py-2 text-sm font-medium transition',
+                currentPath === item.href
+                  ? 'bg-brand-50 text-brand-700'
+                  : 'text-slate-700 hover:bg-slate-100',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </Container>
+  </div>
+</header>

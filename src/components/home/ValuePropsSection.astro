@@ -1,0 +1,26 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import { valueProposition } from '@/data/company';
+---
+
+<section class="py-16 sm:py-20">
+  <Container>
+    <SectionIntro
+      eyebrow="Propuesta de valor"
+      title="Tecnología útil para operar mejor y crecer con más control."
+      description="Integramos visión de negocio, criterio técnico y ejecución estructurada para convertir necesidades complejas en soluciones viables."
+    />
+
+    <div class="section-grid mt-10">
+      {
+        valueProposition.map((item) => (
+          <article class="surface-card p-7">
+            <h3 class="text-xl font-bold">{item.title}</h3>
+            <p class="mt-4 leading-7 text-slate-600">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>

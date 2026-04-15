@@ -1,0 +1,33 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import Button from '@/components/ui/Button.astro';
+import { serviceCatalog } from '@/data/services';
+---
+
+<section class="py-16 sm:py-20">
+  <Container>
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <SectionIntro
+        eyebrow="Servicios"
+        title="Capacidades para construir, integrar y evolucionar soluciones."
+        description="Trabajamos en iniciativas nuevas, modernización de plataformas, soporte técnico y consultoría especializada."
+      />
+      <Button href="/servicios" variant="secondary">Explorar catálogo</Button>
+    </div>
+
+    <div class="section-grid mt-10">
+      {
+        serviceCatalog.slice(0, 6).map((service) => (
+          <article class="surface-card p-7">
+            <h3 class="text-xl font-bold">{service.title}</h3>
+            <p class="mt-4 leading-7 text-slate-600">{service.description}</p>
+            <ul class="mt-5 list-inside list-disc space-y-2 text-sm text-slate-500">
+              {service.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>

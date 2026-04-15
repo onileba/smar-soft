@@ -1,0 +1,24 @@
+---
+import MainLayout from '@/components/layout/MainLayout.astro';
+import HeroSection from '@/components/home/HeroSection.astro';
+import ValuePropsSection from '@/components/home/ValuePropsSection.astro';
+import ServicesPreview from '@/components/home/ServicesPreview.astro';
+import DifferentiatorsSection from '@/components/home/DifferentiatorsSection.astro';
+import ProcessSection from '@/components/home/ProcessSection.astro';
+import TechnologiesPreview from '@/components/home/TechnologiesPreview.astro';
+import CtaBanner from '@/components/home/CtaBanner.astro';
+---
+
+<MainLayout
+  title="Inicio"
+  description="SmarSoFT ofrece consultoría tecnológica y fábrica de software para construir, integrar y evolucionar soluciones digitales."
+  pathname="/"
+>
+  <HeroSection />
+  <ValuePropsSection />
+  <ServicesPreview />
+  <DifferentiatorsSection />
+  <ProcessSection />
+  <TechnologiesPreview />
+  <CtaBanner />
+</MainLayout>

@@ -1,0 +1,65 @@
+---
+import MainLayout from '@/components/layout/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+import { contactPlaceholders, siteConfig } from '@/data/site';
+---
+
+<MainLayout
+  title="Aviso de privacidad"
+  description="Aviso de privacidad base de SmarSoFT para el tratamiento inicial de datos personales recabados por formularios y contacto comercial."
+  pathname="/aviso-de-privacidad"
+>
+  <section class="py-20 sm:py-24">
+    <Container class="max-w-4xl">
+      <SectionIntro
+        eyebrow="Legal"
+        title="Aviso de privacidad base"
+        description="Este contenido es una base inicial informativa y debe ser revisado por asesoría legal antes de publicarse como versión definitiva."
+      />
+
+      <article class="surface-card mt-12 space-y-8 p-8 leading-8 text-slate-600">
+        <section>
+          <h2 class="text-2xl font-bold text-slate-950">Responsable</h2>
+          <p class="mt-4">
+            {siteConfig.legalName}, con domicilio en {contactPlaceholders.address}, es responsable
+            del tratamiento de los datos personales recabados a través del sitio {siteConfig.domain}.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-950">Datos recabados</h2>
+          <p class="mt-4">
+            De forma inicial, podremos recabar nombre, empresa, correo electrónico, teléfono y
+            mensaje de contacto para fines de atención comercial y seguimiento a solicitudes.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-950">Finalidades</h2>
+          <p class="mt-4">
+            Los datos se utilizarán para atender solicitudes de información, establecer contacto
+            comercial, dar seguimiento a oportunidades de proyecto y mantener comunicación
+            relacionada con los servicios solicitados.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-950">Derechos ARCO</h2>
+          <p class="mt-4">
+            Para ejercer derechos de acceso, rectificación, cancelación u oposición, deberá
+            enviarse una solicitud al correo {contactPlaceholders.privacyEmail}.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-950">Actualizaciones</h2>
+          <p class="mt-4">
+            Este aviso puede actualizarse para reflejar cambios operativos, regulatorios o de
+            servicio. Cualquier cambio relevante se publicará en esta misma página.
+          </p>
+        </section>
+      </article>
+    </Container>
+  </section>
+</MainLayout>
