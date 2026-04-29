@@ -15,6 +15,13 @@ export const siteConfig = {
     'SmarSoFT ayuda a empresas a diagnosticar, diseñar, integrar y construir soluciones de software con criterio técnico y enfoque de negocio.',
   keywords:
     'consultoría tecnológica, fábrica de software, desarrollo a medida, integración de sistemas, arquitectura de software, modernización tecnológica',
+  brand: {
+    primary: '#05202b',
+    accent: '#00bf9a',
+    white: '#ffffff',
+    black: '#000000',
+    heroImage: '/brand/office-hero.jpg',
+  },
 };
 
 export const contactPlaceholders = {

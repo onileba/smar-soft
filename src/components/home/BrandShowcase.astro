@@ -1,0 +1,62 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionIntro from '@/components/ui/SectionIntro.astro';
+---
+
+<section class="py-16 sm:py-20">
+  <Container>
+    <SectionIntro
+      eyebrow="Identidad"
+      title="Una identidad visual sobria, técnica y consistente con el tipo de soluciones que entregamos."
+      description="La marca combina estructura geométrica, contraste limpio y aplicaciones discretas para proyectar confianza, orden y criterio."
+    />
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+      <article class="surface-card overflow-hidden">
+        <img
+          src="/brand/office-hero.jpg"
+          alt="Aplicación del logotipo SmarSoFT en un espacio corporativo interior."
+          width="3840"
+          height="2160"
+          loading="lazy"
+          class="h-full w-full object-cover"
+        />
+      </article>
+
+      <div class="grid gap-6">
+        <article class="surface-card overflow-hidden">
+          <img
+            src="/brand/signage.jpg"
+            alt="Aplicación exterior del logotipo SmarSoFT en señalética profesional."
+            width="4000"
+            height="3000"
+            loading="lazy"
+            class="h-64 w-full object-cover"
+          />
+        </article>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <article class="surface-card overflow-hidden">
+            <img
+              src="/brand/leather-detail.jpg"
+              alt="Detalle del logotipo SmarSoFT aplicado sobre material corporativo."
+              width="2000"
+              height="1428"
+              loading="lazy"
+              class="h-56 w-full object-cover"
+            />
+          </article>
+          <article class="surface-card overflow-hidden">
+            <img
+              src="/brand/metallic-detail.jpg"
+              alt="Aplicación metálica del logotipo SmarSoFT en acabado premium."
+              width="3307"
+              height="2362"
+              loading="lazy"
+              class="h-56 w-full object-cover"
+            />
+          </article>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

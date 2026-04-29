@@ -1,0 +1,47 @@
+---
+import { siteConfig } from '@/data/site';
+
+interface Props {
+  variant?: 'dark' | 'light';
+  compact?: boolean;
+  withBackground?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'dark',
+  compact = false,
+  withBackground = true,
+  class: className = '',
+} = Astro.props as Props;
+
+const wordmarkTone = variant === 'light' ? 'text-white' : 'text-ink-950';
+---
+
+<span
+  class:list={[
+    'inline-flex items-center rounded-[1.4rem] transition',
+    compact ? 'gap-3 px-3 py-2' : 'gap-3.5 px-4 py-3',
+    withBackground && (variant === 'light'
+      ? 'bg-ink-950/85 ring-1 ring-white/10'
+      : 'bg-ink-950 ring-1 ring-ink-900/60 shadow-[0_18px_36px_-24px_rgba(5,32,43,0.8)]'),
+    className,
+  ]}
+>
+  <img
+    src="/brand/logo-mark-brand.png"
+    alt=""
+    width={compact ? 48 : 64}
+    height={compact ? 48 : 64}
+    class:list={[compact ? 'h-12 w-12' : 'h-16 w-16', 'shrink-0 rounded-sm object-contain']}
+  />
+  <span
+    class:list={[
+      'font-medium tracking-[0.08em]',
+      withBackground && variant === 'dark' ? 'text-white' : wordmarkTone,
+      compact ? 'text-[1.8rem]' : 'text-3xl',
+    ]}
+  >
+    {siteConfig.name.toUpperCase()}
+  </span>
+</span>

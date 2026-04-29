@@ -10,9 +10,9 @@
   body {
     @apply bg-slate-50 font-sans text-slate-800 antialiased;
     background-image:
-      radial-gradient(circle at top right, rgba(30, 168, 155, 0.1), transparent 22rem),
-      radial-gradient(circle at left center, rgba(11, 18, 32, 0.04), transparent 26rem),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.99), rgba(248, 250, 252, 0.98));
+      radial-gradient(circle at top right, rgba(0, 191, 154, 0.08), transparent 22rem),
+      radial-gradient(circle at left center, rgba(5, 32, 43, 0.045), transparent 26rem),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.995), rgba(247, 249, 251, 0.985));
   }
 
   h1,
@@ -33,15 +33,16 @@
 
 @layer components {
   .surface-card {
-    @apply rounded-3xl border border-white/70 bg-white shadow-[0_24px_80px_-42px_rgba(11,18,32,0.45)];
+    @apply rounded-3xl border border-white/70 bg-white shadow-[0_32px_90px_-52px_rgba(5,32,43,0.38)];
     background-color: rgba(255, 255, 255, 0.92);
     box-shadow:
-      0 24px 80px -42px rgba(11, 18, 32, 0.45),
-      0 1px 0 rgba(255, 255, 255, 0.75) inset;
+      0 32px 90px -52px rgba(5, 32, 43, 0.38),
+      0 1px 0 rgba(255, 255, 255, 0.78) inset;
   }
 
   .eyebrow {
-    @apply inline-flex items-center rounded-full border border-brand-200/90 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-brand-700;
+    @apply inline-flex items-center rounded-full border border-brand-200/90 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-brand-700;
+    background-color: rgba(255, 255, 255, 0.92);
   }
 
   .section-grid {
