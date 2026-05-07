@@ -48,15 +48,46 @@ export const processSteps = [
 
 export const aboutContent = {
   mission:
-    'Diseñar e implementar soluciones tecnológicas útiles, mantenibles y orientadas a resultados para empresas que necesitan mayor eficiencia, integración y capacidad de evolución digital.',
+    'Brindar soluciones tecnológicas integrales mediante la gestión y el desarrollo de software, acompañando a nuestros clientes en cada etapa y proceso para construir productos de calidad, eficientes y escalables.',
   vision:
-    'Consolidarnos como un socio confiable de transformación tecnológica para organizaciones que requieren consultoría seria y desarrollo de software con criterio de negocio.',
+    'Ser una empresa reconocida en el desarrollo y la gestión de proyectos de software, destacando por la calidad de nuestras soluciones, la confianza de nuestros clientes y la capacidad de nuestro equipo para llevar ideas desde su conceptualización hasta una implementación exitosa.',
   approach:
-    'Combinamos análisis funcional, arquitectura, ejecución disciplinada y comunicación clara para reducir incertidumbre y acelerar decisiones.',
+    'Nos enfocamos en entregar productos respaldados por profesionales con experiencia, compromiso y visión práctica de negocio, garantizando resultados confiables y alineados con las necesidades reales de cada organización.',
   values: [
-    'Claridad en alcance, prioridades y riesgos',
-    'Compromiso con calidad técnica y mantenibilidad',
-    'Colaboración cercana con equipos y responsables del negocio',
-    'Entrega responsable, sin sobrepromesas ni complejidad innecesaria',
+    {
+      title: 'Responsabilidad',
+      description:
+        'Cumplimos nuestros compromisos en tiempo y forma, cuidando la calidad y la consistencia de cada entrega.',
+    },
+    {
+      title: 'Profesionalismo',
+      description:
+        'Actuamos con ética, seriedad y foco en la excelencia durante todas las etapas del proyecto.',
+    },
+    {
+      title: 'Compromiso',
+      description:
+        'Nos involucramos en cada iniciativa entendiendo las necesidades del cliente como parte central del resultado.',
+    },
+    {
+      title: 'Calidad',
+      description:
+        'Buscamos mejora continua en procesos y soluciones para construir productos eficientes y confiables.',
+    },
+    {
+      title: 'Trabajo en equipo',
+      description:
+        'Fomentamos la colaboración entre perfiles multidisciplinarios para lograr soluciones integrales.',
+    },
+    {
+      title: 'Innovación',
+      description:
+        'Adoptamos nuevas tecnologías y mejores prácticas para ofrecer soluciones modernas y competitivas.',
+    },
+    {
+      title: 'Orientación al cliente',
+      description:
+        'Priorizamos la satisfacción del cliente y construimos relaciones basadas en confianza y resultados.',
+    },
   ],
 };
