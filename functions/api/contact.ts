@@ -8,6 +8,14 @@ type ContactPayload = {
   turnstileToken?: unknown;
 };
 
+type Env = {
+  CLOUDFLARE_ACCOUNT_ID?: string;
+  EMAIL_SERVICE_API_TOKEN?: string;
+  CONTACT_INBOX_EMAIL?: string;
+  CONTACT_FROM_EMAIL?: string;
+  CONTACT_FROM_NAME?: string;
+};
+
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
@@ -21,8 +29,167 @@ const asTrimmedString = (value: unknown) =>
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 const isSuspiciousMessage = (value: string) => value.length > 3000;
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 
-export const onRequestPost = async ({ request }: { request: Request }) => {
+const getEmailConfig = (env: Env) => {
+  const accountId = asTrimmedString(env.CLOUDFLARE_ACCOUNT_ID);
+  const apiToken = asTrimmedString(env.EMAIL_SERVICE_API_TOKEN);
+  const inboxEmail = asTrimmedString(env.CONTACT_INBOX_EMAIL) || 'contacto@smar-soft.com';
+  const fromEmail = asTrimmedString(env.CONTACT_FROM_EMAIL) || 'no-reply@smar-soft.com';
+  const fromName = asTrimmedString(env.CONTACT_FROM_NAME) || 'SmarSoFT';
+
+  return {
+    accountId,
+    apiToken,
+    inboxEmail,
+    fromEmail,
+    fromName,
+    isConfigured: Boolean(accountId && apiToken),
+  };
+};
+
+const buildTextBody = (payload: {
+  nombre: string;
+  empresa: string;
+  correo: string;
+  telefono: string;
+  servicio: string;
+  mensaje: string;
+  createdAt: string;
+}) =>
+  [
+    'Nueva solicitud de contacto desde smar-soft.com',
+    '',
+    `Fecha: ${payload.createdAt}`,
+    `Nombre: ${payload.nombre}`,
+    `Empresa: ${payload.empresa || 'No indicada'}`,
+    `Correo: ${payload.correo}`,
+    `Telefono: ${payload.telefono || 'No indicado'}`,
+    `Servicio: ${payload.servicio}`,
+    '',
+    'Mensaje:',
+    payload.mensaje,
+  ].join('\n');
+
+const buildHtmlBody = (payload: {
+  nombre: string;
+  empresa: string;
+  correo: string;
+  telefono: string;
+  servicio: string;
+  mensaje: string;
+  createdAt: string;
+}) => {
+  const rows = [
+    ['Fecha', payload.createdAt],
+    ['Nombre', payload.nombre],
+    ['Empresa', payload.empresa || 'No indicada'],
+    ['Correo', payload.correo],
+    ['Telefono', payload.telefono || 'No indicado'],
+    ['Servicio', payload.servicio],
+  ];
+
+  return `
+    <div style="font-family:Arial,sans-serif;color:#0f172a;line-height:1.6">
+      <h1 style="margin:0 0 16px;font-size:20px;color:#05202b">Nueva solicitud de contacto</h1>
+      <p style="margin:0 0 20px">Se recibio una nueva solicitud desde <strong>smar-soft.com</strong>.</p>
+      <table style="border-collapse:collapse;width:100%;max-width:720px;margin:0 0 20px">
+        <tbody>
+          ${rows
+            .map(
+              ([label, value]) => `
+                <tr>
+                  <td style="padding:10px 12px;border:1px solid #cbd5e1;background:#f8fafc;font-weight:700;width:180px">${escapeHtml(label)}</td>
+                  <td style="padding:10px 12px;border:1px solid #cbd5e1">${escapeHtml(value)}</td>
+                </tr>`,
+            )
+            .join('')}
+        </tbody>
+      </table>
+      <h2 style="margin:0 0 8px;font-size:16px;color:#05202b">Mensaje</h2>
+      <div style="padding:14px 16px;border:1px solid #cbd5e1;border-radius:12px;background:#ffffff;white-space:pre-wrap">${escapeHtml(
+        payload.mensaje,
+      )}</div>
+    </div>
+  `.trim();
+};
+
+const sendContactEmail = async (
+  env: Env,
+  payload: {
+    nombre: string;
+    empresa: string;
+    correo: string;
+    telefono: string;
+    servicio: string;
+    mensaje: string;
+    createdAt: string;
+  },
+) => {
+  const emailConfig = getEmailConfig(env);
+
+  if (!emailConfig.isConfigured) {
+    return {
+      ok: false,
+      status: 503,
+      message:
+        'El flujo de correo no esta configurado todavia. Configure Cloudflare Email Service y las variables de entorno requeridas.',
+    };
+  }
+
+  const response = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${emailConfig.accountId}/email/sending/send`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${emailConfig.apiToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: emailConfig.inboxEmail,
+        from: {
+          address: emailConfig.fromEmail,
+          name: emailConfig.fromName,
+        },
+        reply_to: {
+          address: payload.correo,
+          name: payload.nombre,
+        },
+        subject: `Nuevo contacto SmarSoFT: ${payload.servicio}`,
+        text: buildTextBody(payload),
+        html: buildHtmlBody(payload),
+      }),
+    },
+  );
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error('Cloudflare Email Service error', {
+      status: response.status,
+      errorText,
+    });
+
+    return {
+      ok: false,
+      status: 502,
+      message:
+        'La solicitud fue validada, pero Cloudflare Email Service no acepto el envio. Revise la configuracion del dominio y del token.',
+    };
+  }
+
+  return {
+    ok: true,
+    status: 200,
+  };
+};
+
+export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   let payload: ContactPayload;
 
   try {
@@ -98,12 +265,22 @@ export const onRequestPost = async ({ request }: { request: Request }) => {
 
   // TODO: Validar `turnstileToken` contra la API de Cloudflare Turnstile usando la secret key del entorno.
   // TODO: Rechazar solicitudes sin token válido cuando el widget Turnstile ya esté habilitado en el frontend.
-  // TODO: Enviar correo transaccional o registrar la solicitud en almacenamiento persistente.
   // TODO: Agregar observabilidad y rate limiting si el volumen de tráfico lo requiere.
+
+  const deliveryResult = await sendContactEmail(env, normalizedPayload);
+
+  if (!deliveryResult.ok) {
+    return json(
+      {
+        ok: false,
+        message: deliveryResult.message,
+      },
+      deliveryResult.status,
+    );
+  }
 
   return json({
     ok: true,
-    message: 'Solicitud recibida. Nos pondremos en contacto a la brevedad.',
-    data: normalizedPayload,
+    message: 'Solicitud enviada correctamente. Nos pondremos en contacto a la brevedad.',
   });
 };
