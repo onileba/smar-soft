@@ -14,6 +14,10 @@ type Env = {
   CONTACT_INBOX_EMAIL?: string;
   CONTACT_FROM_EMAIL?: string;
   CONTACT_FROM_NAME?: string;
+  MICROSOFT_TENANT_ID?: string;
+  MICROSOFT_CLIENT_ID?: string;
+  MICROSOFT_CLIENT_SECRET?: string;
+  MICROSOFT_SENDER_EMAIL?: string;
 };
 
 const json = (body: unknown, status = 200) =>
@@ -51,6 +55,26 @@ const getEmailConfig = (env: Env) => {
     fromEmail,
     fromName,
     isConfigured: Boolean(accountId && apiToken),
+  };
+};
+
+const getMicrosoftConfig = (env: Env) => {
+  const tenantId = asTrimmedString(env.MICROSOFT_TENANT_ID);
+  const clientId = asTrimmedString(env.MICROSOFT_CLIENT_ID);
+  const clientSecret = asTrimmedString(env.MICROSOFT_CLIENT_SECRET);
+  const senderEmail =
+    asTrimmedString(env.MICROSOFT_SENDER_EMAIL) ||
+    asTrimmedString(env.CONTACT_FROM_EMAIL) ||
+    'contacto@smar-soft.com';
+  const inboxEmail = asTrimmedString(env.CONTACT_INBOX_EMAIL) || 'contacto@smar-soft.com';
+
+  return {
+    tenantId,
+    clientId,
+    clientSecret,
+    senderEmail,
+    inboxEmail,
+    isConfigured: Boolean(tenantId && clientId && clientSecret && senderEmail),
   };
 };
 
@@ -132,6 +156,108 @@ const sendContactEmail = async (
     createdAt: string;
   },
 ) => {
+  const microsoftConfig = getMicrosoftConfig(env);
+
+  if (microsoftConfig.isConfigured) {
+    const tokenResponse = await fetch(
+      `https://login.microsoftonline.com/${microsoftConfig.tenantId}/oauth2/v2.0/token`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          client_id: microsoftConfig.clientId,
+          client_secret: microsoftConfig.clientSecret,
+          scope: 'https://graph.microsoft.com/.default',
+          grant_type: 'client_credentials',
+        }).toString(),
+      },
+    );
+
+    if (!tokenResponse.ok) {
+      const errorText = await tokenResponse.text();
+      console.error('Microsoft Graph token error', {
+        status: tokenResponse.status,
+        errorText,
+      });
+
+      return {
+        ok: false,
+        status: 502,
+        message:
+          'La autenticacion con Microsoft 365 fallo. Revise tenant ID, client ID, client secret y permisos Mail.Send con admin consent.',
+      };
+    }
+
+    const tokenPayload = (await tokenResponse.json()) as { access_token?: string };
+    const accessToken = asTrimmedString(tokenPayload.access_token);
+
+    if (!accessToken) {
+      return {
+        ok: false,
+        status: 502,
+        message: 'Microsoft 365 no devolvio un access token valido para el envio de correo.',
+      };
+    }
+
+    const graphResponse = await fetch(
+      `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(microsoftConfig.senderEmail)}/sendMail`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: {
+            subject: `Nuevo contacto SmarSoFT: ${payload.servicio}`,
+            body: {
+              contentType: 'HTML',
+              content: buildHtmlBody(payload),
+            },
+            toRecipients: [
+              {
+                emailAddress: {
+                  address: microsoftConfig.inboxEmail,
+                },
+              },
+            ],
+            replyTo: [
+              {
+                emailAddress: {
+                  address: payload.correo,
+                  name: payload.nombre,
+                },
+              },
+            ],
+          },
+          saveToSentItems: true,
+        }),
+      },
+    );
+
+    if (!graphResponse.ok) {
+      const errorText = await graphResponse.text();
+      console.error('Microsoft Graph sendMail error', {
+        status: graphResponse.status,
+        errorText,
+      });
+
+      return {
+        ok: false,
+        status: 502,
+        message:
+          'Microsoft 365 rechazo el envio. Revise el buzon remitente, el permiso Mail.Send y el admin consent de la aplicacion.',
+      };
+    }
+
+    return {
+      ok: true,
+      status: 200,
+    };
+  }
+
   const emailConfig = getEmailConfig(env);
 
   if (!emailConfig.isConfigured) {
@@ -139,7 +265,7 @@ const sendContactEmail = async (
       ok: false,
       status: 503,
       message:
-        'El flujo de correo no esta configurado todavia. Configure Cloudflare Email Service y las variables de entorno requeridas.',
+        'El flujo de correo no esta configurado todavia. Configure Microsoft 365 o Cloudflare Email Service y las variables de entorno requeridas.',
     };
   }
 

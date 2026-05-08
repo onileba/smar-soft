@@ -1,5 +1,14 @@
 {
   "name": "smar-soft",
   "compatibility_date": "2026-04-15",
-  "pages_build_output_dir": "./dist"
+  "pages_build_output_dir": "./dist",
+  "vars": {
+    "CONTACT_INBOX_EMAIL": "contacto@smar-soft.com",
+    "CONTACT_FROM_EMAIL": "contacto@smar-soft.com",
+    "CONTACT_FROM_NAME": "SmarSoFT",
+    "MICROSOFT_SENDER_EMAIL": "contacto@smar-soft.com"
+  },
+  "secrets": {
+    "required": ["MICROSOFT_TENANT_ID", "MICROSOFT_CLIENT_ID", "MICROSOFT_CLIENT_SECRET"]
+  }
 }
